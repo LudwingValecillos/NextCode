@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebCraft Pro - Páginas Web a Medida</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        line-height: 1.6;
+        color: #333;
+        overflow-x: hidden;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      header {
+        background-color: #2c3e50;
+        color: #ecf0f1;
+        padding: 20px 0;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+      }
+
+      .nav-links li {
+        margin-left: 20px;
+      }
+
+      .nav-links a {
+        color: #ecf0f1;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: #3498db;
+      }
+
+      .hero {
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.7),
+            rgba(0, 0, 0, 0.7)
+          ),
+          url("https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80");
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: #ecf0f1;
+        padding-top: 80px;
+      }
+
+      .hero-content {
+        max-width: 800px;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        animation: fadeInUp 1s ease;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        animation: fadeInUp 1s ease 0.5s;
+        animation-fill-mode: both;
+      }
+
+      .btn {
+        display: inline-block;
+        background-color: #3498db;
+        color: #fff;
+        padding: 12px 30px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+        animation: fadeInUp 1s ease 1s;
+        animation-fill-mode: both;
+      }
+
+      .btn:hover {
+        background-color: #206492;
+      }
+
+      .services {
+        padding: 80px 0;
+        background-color: #f9f9f9;
+      }
+
+      .services h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 40px;
+      }
+
+      .service-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+      }
+
+      .service-item {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 5px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: transform 0.3s ease;
+      }
+
+      .service-item:hover {
+        transform: translateY(-10px);
+      }
+
+      .service-item i {
+        font-size: 3rem;
+        color: #3498db;
+        margin-bottom: 20px;
+      }
+
+      .service-item h3 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+      }
+
+      .projects {
+        padding: 80px 0;
+      }
+
+      .projects h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 40px;
+      }
+
+      .project-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .project-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 5px;
+      }
+
+      .project-item img {
+        width: 100%;
+        height: auto;
+        transition: transform 0.3s ease;
+      }
+
+      .project-item:hover img {
+        transform: scale(1.1);
+      }
+
+      .project-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(52, 152, 219, 0.9);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .project-item:hover .project-overlay {
+        opacity: 1;
+      }
+
+      .project-overlay a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+
+      .testimonials {
+        padding: 80px 0;
+        background-color: #f9f9f9;
+      }
+
+      .testimonials h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 40px;
+      }
+
+      .testimonial-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .testimonial-item {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 5px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .testimonial-item p {
+        font-style: italic;
+        margin-bottom: 20px;
+      }
+
+      .testimonial-author {
+        font-weight: 600;
+        color: #3498db;
+      }
+
+      .whatsapp-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #25d366;
+        color: #fff;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        text-decoration: none;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        -webkit-box-shadow: 10px 10px 24px -3px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 10px 10px 24px -3px rgba(0, 0, 0, 0.75);
+        box-shadow: 10px 10px 24px -3px rgba(0, 0, 0, 0.75);
+      }
+
+      .whatsapp-button:hover {
+        transform: scale(1.1);
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+        header {
+          position: static;
+        }
+
+        .hero p {
+          font-size: 1rem;
+        }
+
+        .nav-links {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="container">
+        <div class="logo">NextCode</div>
+        <ul class="nav-links">
+          <li><a href="#home" class="active">Inicio</a></li>
+          <li><a href="#services">Servicios</a></li>
+          <li><a href="#projects">Proyectos</a></li>
+          <li><a href="#testimonials">Testimonios</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section id="home" class="hero">
+      <div class="hero-content">
+        <h1>Diseñamos tu Presencia Digital</h1>
+        <p>
+          En NextCode , creamos sitios web a medida que impulsan tu negocio y
+          cautivan a tu audiencia.
+        </p>
+        <a href="#contact" class="btn">Solicita una Cotización</a>
+      </div>
+    </section>
+
+    <section id="services" class="services">
+      <div class="container">
+        <h2>Nuestros Servicios</h2>
+        <div class="service-grid">
+          <div class="service-item">
+            <i class="fas fa-laptop-code"></i>
+            <h3>Diseño Web Personalizado</h3>
+            <p>
+              Creamos sitios web únicos que reflejan la esencia de tu marca y
+              cumplen tus objetivos específicos.
+            </p>
+          </div>
+          <div class="service-item">
+            <i class="fas fa-mobile-alt"></i>
+            <h3>Diseño Responsivo</h3>
+            <p>
+              Aseguramos que tu sitio se vea y funcione perfectamente en todos
+              los dispositivos y tamaños de pantalla.
+            </p>
+          </div>
+          <div class="service-item">
+            <i class="fas fa-search"></i>
+            <h3>Optimización SEO</h3>
+            <p>
+              Mejoramos la visibilidad de tu sitio en los motores de búsqueda
+              para atraer más tráfico orgánico.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="projects">
+      <div class="container">
+        <h2>Nuestros Proyectos</h2>
+        <div class="project-grid">
+          <div class="project-item">
+            <img
+              src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1115&q=80"
+              alt="Proyecto 1"
+            />
+            <div class="project-overlay">
+              <a href="#">Ver Proyecto</a>
+            </div>
+          </div>
+          <div class="project-item">
+            <img
+              src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+              alt="Proyecto 2"
+            />
+            <div class="project-overlay">
+              <a href="#">Ver Proyecto</a>
+            </div>
+          </div>
+          <div class="project-item">
+            <img
+              src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+              alt="Proyecto 3"
+            />
+            <div class="project-overlay">
+              <a href="#">Ver Proyecto</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+      <div class="container">
+        <h2>Lo que Dicen Nuestros Clientes</h2>
+        <div class="testimonial-grid">
+          <div class="testimonial-item">
+            <p>
+              "NextCode transformó completamente nuestra presencia en línea. Su
+              diseño innovador y atención al detalle superaron nuestras
+              expectativas."
+            </p>
+            <div class="testimonial-author">
+              - María Rodríguez, CEO de InnovaTech
+            </div>
+          </div>
+          <div class="testimonial-item">
+            <p>
+              "Trabajar con NextCode fue una experiencia increíble. Entendieron
+              perfectamente nuestras necesidades y entregaron un sitio web que
+              realmente representa nuestra marca."
+            </p>
+            <div class="testimonial-author">
+              - Carlos Gómez, Fundador de EcoSolutions
+            </div>
+          </div>
+          <div class="testimonial-item">
+            <p>
+              "Desde que lanzamos nuestro nuevo sitio web diseñado por NextCode,
+              hemos visto un aumento significativo en nuestras conversiones en
+              línea. ¡Altamente recomendados!"
+            </p>
+            <div class="testimonial-author">
+              - Ana Martínez, Directora de Marketing en FashionNova
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <a
+      href="https://wa.me/1234567890"
+      class="whatsapp-button"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Contactar por WhatsApp"
+    >
+      <svg
+        viewBox="0 0 256 259"
+        width="256"
+        height="259"
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="xMidYMid"
+      >
+        <path
+          d="m67.663 221.823 4.185 2.093c17.44 10.463 36.971 15.346 56.503 15.346 61.385 0 111.609-50.224 111.609-111.609 0-29.297-11.859-57.897-32.785-78.824-20.927-20.927-48.83-32.785-78.824-32.785-61.385 0-111.61 50.224-110.912 112.307 0 20.926 6.278 41.156 16.741 58.594l2.79 4.186-11.16 41.156 41.853-10.464Z"
+          fill="#00E676"
+        />
+        <path
+          d="M219.033 37.668C195.316 13.254 162.531 0 129.048 0 57.898 0 .698 57.897 1.395 128.35c0 22.322 6.278 43.947 16.742 63.478L0 258.096l67.663-17.439c18.834 10.464 39.76 15.347 60.688 15.347 70.453 0 127.653-57.898 127.653-128.35 0-34.181-13.254-66.269-36.97-89.986ZM129.048 234.38c-18.834 0-37.668-4.882-53.712-14.648l-4.185-2.093-40.458 10.463 10.463-39.76-2.79-4.186C7.673 134.63 22.322 69.058 72.546 38.365c50.224-30.692 115.097-16.043 145.79 34.181 30.692 50.224 16.043 115.097-34.18 145.79-16.045 10.463-35.576 16.043-55.108 16.043Zm61.385-77.428-7.673-3.488s-11.16-4.883-18.136-8.371c-.698 0-1.395-.698-2.093-.698-2.093 0-3.488.698-4.883 1.396 0 0-.697.697-10.463 11.858-.698 1.395-2.093 2.093-3.488 2.093h-.698c-.697 0-2.092-.698-2.79-1.395l-3.488-1.395c-7.673-3.488-14.648-7.674-20.229-13.254-1.395-1.395-3.488-2.79-4.883-4.185-4.883-4.883-9.766-10.464-13.253-16.742l-.698-1.395c-.697-.698-.697-1.395-1.395-2.79 0-1.395 0-2.79.698-3.488 0 0 2.79-3.488 4.882-5.58 1.396-1.396 2.093-3.488 3.488-4.883 1.395-2.093 2.093-4.883 1.395-6.976-.697-3.488-9.068-22.322-11.16-26.507-1.396-2.093-2.79-2.79-4.883-3.488H83.01c-1.396 0-2.79.698-4.186.698l-.698.697c-1.395.698-2.79 2.093-4.185 2.79-1.395 1.396-2.093 2.79-3.488 4.186-4.883 6.278-7.673 13.951-7.673 21.624 0 5.58 1.395 11.161 3.488 16.044l.698 2.093c6.278 13.253 14.648 25.112 25.81 35.575l2.79 2.79c2.092 2.093 4.185 3.488 5.58 5.58 14.649 12.557 31.39 21.625 50.224 26.508 2.093.697 4.883.697 6.976 1.395h6.975c3.488 0 7.673-1.395 10.464-2.79 2.092-1.395 3.487-1.395 4.882-2.79l1.396-1.396c1.395-1.395 2.79-2.092 4.185-3.487 1.395-1.395 2.79-2.79 3.488-4.186 1.395-2.79 2.092-6.278 2.79-9.765v-4.883s-.698-.698-2.093-1.395Z"
+          fill="#FFF"
+        />
+      </svg>
+    </a>
+
+    <script
+      src="https://kit.fontawesome.com/your-fontawesome-kit.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", (event) => {
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute("href")).scrollIntoView({
+              behavior: "smooth",
+            });
+          });
+        });
+
+        // Highlight active section in navigation
+        const sections = document.querySelectorAll("section");
+        const navLinks = document.querySelectorAll(".nav-links a");
+
+        window.addEventListener("scroll", () => {
+          let current = "";
+          sections.forEach((section) => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (pageYOffset >= sectionTop - sectionHeight / 3) {
+              current = section.getAttribute("id");
+            }
+          });
+
+          navLinks.forEach((link) => {
+            link.classList.remove("active");
+            if (link.getAttribute("href").slice(1) === current) {
+              link.classList.add("active");
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
